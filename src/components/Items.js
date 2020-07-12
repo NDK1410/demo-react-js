@@ -27,12 +27,17 @@ class Items extends Component {
 								}
 							}> Delete </button>
 						</th>
+
+						<th>
+							<button onClick={(e) => {this.setState({objUpdate : item})}}> Select </button>
+						</th>
 					</tr>
 				)
 			})
 		}
 		return (
 			<div>
+
 				<input onChange={
 					(event) => { this.setState({inputAdd: event.target.value})}
 				}/>
@@ -42,10 +47,28 @@ class Items extends Component {
 						this.props.addDispatch(this.state.inputAdd)
 					}
 				}> ADD </button>
+
+<div>
+					<input value={this.state.objUpdate.name} onChange={
+						(event) => { this.setState({objUpdate:{
+							...this.state.objUpdate,
+							name: event.target.value
+						} })}
+					}/>
+
+					<button onClick={
+						() => {
+							this.props.updateDispatch(this.state.objUpdate)
+						}
+					}>  Edit </button>
+				</div>
+
 				<table>
 					<tbody>
-						<th>ID</th>
-						<th>Name</th>
+						<tr>
+						   <th>ID</th>
+						   <th>Name</th>
+						</tr>
 						{listData}
 					</tbody>
 				</table>
