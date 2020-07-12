@@ -63,14 +63,17 @@ function* deleteItemActions(action) {
 
 function* updateItemActions(action) {
 	try {
-		yield updateItems(action.payload);
+		yield updateItems(action.payload.dataUpdate);
 		console.log(action.payload);
 		yield put ({
 			type: types.UPDATE_ITEM_SUCCESS
 		})
-		yield put ({
-			type: types.GET_ITEM_REQUEST
-		})
+		if(action.payload.textSearch !== ""){
+			yield put ({
+				type: types.SEARCH_ITEM_REQUEST,
+				payload: action.payload.textSearch
+			})
+		}
 	} catch (error) {
 		yield put ({
 			type: types.UPDATE_ITEM_FAILURE,
@@ -87,7 +90,7 @@ function* searchItemActions(action) {
 		console.log(action.payload);
 		yield put ({
 			type: types.SEARCH_ITEM_SUCCESS,
-			payload: listDataSearch
+			payload: { listData: listDataSearch, textSearch: action.payload}
 		})
 	} catch (error) {
 		yield put ({

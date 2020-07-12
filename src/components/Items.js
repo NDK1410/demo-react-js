@@ -78,7 +78,7 @@ class Items extends Component {
 
 					<button onClick={
 						() => {
-							this.props.updateDispatch(this.state.objUpdate)
+							this.props.updateDispatch({dataUpdate: this.state.objUpdate, textSearch: this.props.textSearch})
 						}
 					}>  Edit </button>
 				</div>

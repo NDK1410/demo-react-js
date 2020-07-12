@@ -18,7 +18,8 @@ class ItemPageContainer extends Component {
 const mapStateToProps = (state) => {
 	console.log("listItem", state.items.listItem)
 	return {
-		items: state.items.listItem
+		items: state.items.listItem,
+		textSearch: state.items.textSearch
 	}
 }
 

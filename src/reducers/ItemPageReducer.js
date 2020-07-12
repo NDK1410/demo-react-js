@@ -5,7 +5,8 @@ const DEFAULT_STATE = {
     dataFetched: false,
     isFetching: false,
     error: false,
-    errorMessage: null
+    errorMessage: null,
+    textSearch: ""
 }
 
 export default (state = DEFAULT_STATE, action) => {
@@ -103,7 +104,8 @@ export default (state = DEFAULT_STATE, action) => {
                 dataFetched: true,
                 error: false,
                 errorMessage: null,
-                listItem: action.payload
+                listItem: action.payload.listData,
+                textSearch: action.payload.textSearch
             }
         case types.SEARCH_ITEM_FAILURE:
             return {
