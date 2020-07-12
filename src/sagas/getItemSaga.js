@@ -44,13 +44,21 @@ function* addItemActions(action) {
 
 function* deleteItemActions(action) {
 	try {
-		yield deleteItems(action.payload);
+		yield deleteItems(action.payload.dataDelete);
 		yield put ({
 			type: types.DELETE_ITEM_SUCCESS
 		})
-		yield put ({
-			type: types.GET_ITEM_REQUEST
-		})
+		if(action.payload.textSearch !== ""){
+			yield put ({
+				type: types.SEARCH_ITEM_REQUEST,
+				payload: action.payload.textSearch
+			})
+		}
+		else {
+			yield put ({
+				type: types.GET_ITEM_REQUEST
+			})
+		}
 	} catch (error) {
 		yield put ({
 			type: types.DELETE_ITEM_FAILURE,
@@ -72,6 +80,11 @@ function* updateItemActions(action) {
 			yield put ({
 				type: types.SEARCH_ITEM_REQUEST,
 				payload: action.payload.textSearch
+			})
+		}
+		else {
+			yield put ({
+				type: types.GET_ITEM_REQUEST
 			})
 		}
 	} catch (error) {

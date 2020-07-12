@@ -24,7 +24,7 @@ class Items extends Component {
 						<th>
 							<button onClick={
 								() => {
-									this.props.deleteDispatch(item.id)
+									this.props.deleteDispatch({dataDelete: item.id, textSearch: this.props.textSearch})
 								}
 							}> Delete </button>
 						</th>
