@@ -1,6 +1,17 @@
 import React, { Component } from "react";
 class Items extends Component {
-	state = { name: "" }
+	constructor(){
+		super();
+		this.state = {
+			inputAdd: "",
+			objUpdate: {
+				id: 0,
+				name: ""
+			}
+		}
+	}
+
+
 	render() {
 		let listData = []
 		if (this.props.items) {
@@ -15,6 +26,15 @@ class Items extends Component {
 		}
 		return (
 			<div>
+				<input onChange={
+					(event) => { this.setState({inputAdd: event.target.value})}
+				}/>
+
+				<button onClick={
+					() => {
+						this.props.addDispatch(this.state.inputAdd)
+					}
+				}> ADD </button>
 				<table>
 					<tbody>
 						<th>ID</th>

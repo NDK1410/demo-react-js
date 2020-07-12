@@ -6,3 +6,10 @@ export function getListItem(payload) {
 		payload
 	}
 }
+
+export function addItemActions(payload) {
+	return {
+		type: types.ADD_ITEM_REQUEST,
+		payload
+	}
+}

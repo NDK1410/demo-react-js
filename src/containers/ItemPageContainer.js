@@ -25,6 +25,10 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		initLoad: () => {
 			dispatch(actions.getListItem())
+		},
+		addDispatch: (data) => {
+			console.log("day la add dispatch tai container: ", data)
+			dispatch(actions.addItemActions(data))
 		}
 	}
 }
