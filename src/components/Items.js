@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 class Items extends Component {
-	constructor(){
+	constructor() {
 		super();
 		this.state = {
 			inputAdd: "",
 			objUpdate: {
 				id: 0,
 				name: ""
-			}
+			},
+			textSearch: ""
 		}
 	}
 
@@ -18,8 +19,8 @@ class Items extends Component {
 			listData = this.props.items.map((item, key) => {
 				return (
 					<tr key={key}>
-						<th>{ item.id }</th>
-						<th>{ item.name }</th>
+						<th>{item.id}</th>
+						<th>{item.name}</th>
 						<th>
 							<button onClick={
 								() => {
@@ -29,7 +30,7 @@ class Items extends Component {
 						</th>
 
 						<th>
-							<button onClick={(e) => {this.setState({objUpdate : item})}}> Select </button>
+							<button onClick={(e) => { this.setState({ objUpdate: item }) }}> Select </button>
 						</th>
 					</tr>
 				)
@@ -37,24 +38,43 @@ class Items extends Component {
 		}
 		return (
 			<div>
+				<div>
+					<input value={this.state.textSearch} onChange={
+						(e) => {
+							this.setState({
+								textSearch: e.target.value
+							})
+						}
+					} />
+
+					<button onClick={
+						() => {
+							this.props.searchDispatch(this.state.textSearch)
+						}
+					}>  Search </button>
+				</div>
 
 				<input onChange={
-					(event) => { this.setState({inputAdd: event.target.value})}
-				}/>
+					(event) => { this.setState({ inputAdd: event.target.value }) }
+				} />
 
 				<button onClick={
 					() => {
 						this.props.addDispatch(this.state.inputAdd)
 					}
-				}> ADD </button>
+				}> Add </button>
 
-<div>
+				<div>
 					<input value={this.state.objUpdate.name} onChange={
-						(event) => { this.setState({objUpdate:{
-							...this.state.objUpdate,
-							name: event.target.value
-						} })}
-					}/>
+						(event) => {
+							this.setState({
+								objUpdate: {
+									...this.state.objUpdate,
+									name: event.target.value
+								}
+							})
+						}
+					} />
 
 					<button onClick={
 						() => {
@@ -66,8 +86,8 @@ class Items extends Component {
 				<table>
 					<tbody>
 						<tr>
-						   <th>ID</th>
-						   <th>Name</th>
+							<th>ID</th>
+							<th>Name</th>
 						</tr>
 						{listData}
 					</tbody>
