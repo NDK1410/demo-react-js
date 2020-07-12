@@ -3,6 +3,7 @@ import getItems from "../fetchAPI/getItems"
 import addItems from "../fetchAPI/addItems"
 import deleteItems from "../fetchAPI/deleteItems"
 import updateItems from "../fetchAPI/updateItems"
+import searchItems from "../fetchAPI/searchItems"
 import * as types from "../contants"
 
 function* getListItem(action) {
@@ -80,10 +81,29 @@ function* updateItemActions(action) {
 	}
 }
 
+function* searchItemActions(action) {
+	try {
+		const listDataSearch = yield searchItems(action.payload);
+		console.log(action.payload);
+		yield put ({
+			type: types.SEARCH_ITEM_SUCCESS,
+			payload: listDataSearch
+		})
+	} catch (error) {
+		yield put ({
+			type: types.SEARCH_ITEM_FAILURE,
+			payload: {
+				errorMessage: error.message
+			}
+		})
+	}
+}
+
 
 export const getItemSaga = [
     takeEvery(types.GET_ITEM_REQUEST, getListItem),
 	takeEvery(types.ADD_ITEM_REQUEST, addItemActions),
 	takeEvery(types.DELETE_ITEM_REQUEST, deleteItemActions),
-	takeEvery(types.UPDATE_ITEM_REQUEST, updateItemActions)
+	takeEvery(types.UPDATE_ITEM_REQUEST, updateItemActions),
+	takeEvery(types.SEARCH_ITEM_REQUEST, searchItemActions)
 ] 

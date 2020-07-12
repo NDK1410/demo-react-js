@@ -38,6 +38,10 @@ const mapDispatchToProps = (dispatch) => {
 		updateDispatch: (data) => {
 			console.log("update du lieu: ", data)
 			dispatch(actions.updateItemAction(data))
+		},
+		searchDispatch: (data) => {
+			console.log("search du lieu: ", data)
+			dispatch(actions.searchItemAction(data))
 		}
 	}
 }
