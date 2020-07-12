@@ -34,6 +34,10 @@ const mapDispatchToProps = (dispatch) => {
 		deleteDispatch: (data) => {
 			console.log("xoa du lieu: ", data)
 			dispatch(actions.deleteItemAction(data))
+		},
+		updateDispatch: (data) => {
+			console.log("update du lieu: ", data)
+			dispatch(actions.updateItemAction(data))
 		}
 	}
 }
