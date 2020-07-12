@@ -1,2 +1,5 @@
 import { combineReducers } from "redux"
-export default combineReducers({})
+import ItemPageReducer from "./ItemPageReducer"
+export default combineReducers({
+	items: ItemPageReducer
+})
