@@ -20,6 +20,13 @@ class Items extends Component {
 					<tr key={key}>
 						<th>{ item.id }</th>
 						<th>{ item.name }</th>
+						<th>
+							<button onClick={
+								() => {
+									this.props.deleteDispatch(item.id)
+								}
+							}> Delete </button>
+						</th>
 					</tr>
 				)
 			})

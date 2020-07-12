@@ -16,6 +16,7 @@ class ItemPageContainer extends Component {
 }
 
 const mapStateToProps = (state) => {
+	console.log("listItem", state.items.listItem)
 	return {
 		items: state.items.listItem
 	}
@@ -29,6 +30,10 @@ const mapDispatchToProps = (dispatch) => {
 		addDispatch: (data) => {
 			console.log("day la add dispatch tai container: ", data)
 			dispatch(actions.addItemActions(data))
+		},
+		deleteDispatch: (data) => {
+			console.log("xoa du lieu: ", data)
+			dispatch(actions.deleteItemAction(data))
 		}
 	}
 }

@@ -13,3 +13,10 @@ export function addItemActions(payload) {
 		payload
 	}
 }
+
+export function deleteItemAction(payload) {
+	return {
+		type: types.DELETE_ITEM_REQUEST,
+		payload
+	}
+}
